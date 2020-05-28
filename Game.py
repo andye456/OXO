@@ -17,25 +17,29 @@ class Game:
         zipO=zip(np.where(grid == 'O')[0],np.where(grid == 'O')[1])
 
         # Check if the X positions result in a win
-        if self.check_row_col(resX):
+        if self._check_row_col(resX):
             return "X WIN"
         # Check if the O positions result in a win
-        if self.check_row_col(resO):
+        elif self._check_row_col(resO):
             return "O WIN"
         # Check the diagonals
-        if self.check_diagonals(zipX):
+        elif self._check_diagonals(zipX):
             return "X WIN"
-        if self.check_diagonals(zipO):
+        elif self._check_diagonals(zipO):
             return "O WIN"
+        elif np.where(grid == ' ')[0].size == 0:
+            # If there are no lines of 3 for XorO and the grid contains no more empty spaces
+            return "DRAW"
+
 
     # Checks that the positions give a win irrespective of whether it is Os or Xs
-    def check_row_col(self,res):
+    def _check_row_col(self, res):
         for g in res:
             if any(sublist in np.array_str(np.array(g[0])) for sublist in ('0 0 0', '1 1 1','2 2 2')):
                 if '0 1 2' in np.array_str(np.array(g[1])):
                     return True
 
-    def check_diagonals(self,res):
+    def _check_diagonals(self, res):
         # the diagonals
         if (0,0) in res and (1,1) in res and (2,2) in res:
             return True

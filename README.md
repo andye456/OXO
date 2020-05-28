@@ -5,6 +5,31 @@ Higher-Dimensional Tic-Tac-Toe | Infinite Series
 
 https://www.youtube.com/watch?v=FwJZa-helig
 
+In this repo there is a Q-Learning jupyter notebook which can be used from a 
+notebook running anywhere. 
+
+I used it from a Docker image on my AWS. (http://35.176.56.125:8888/notebooks/Q-Learning.ipynb)
+
+
+Create a container from one in the Docker repo
+
+    docker create --name tensor-test -p 8888:8888 tensorflow/tensorflow:latest-py3-jupyter
+ 
+(NOTE: The recommended jupyter-latest doesn’t seem to work (maybe it’s using Python 3.8 which doesn’t work with TF)
+
+    docker create --name tensor-test -p 8888:8888 tensorflow/tensorflow:jupyter-latest)
+
+Start the container
+
+    docker start -i tensor-test
+
+    docker cp Q-Learning.ipynb tensor-test:/tf/notebooks/Q-Learning.ipynb
+
+Create the new changed docker image:
+
+    docker commit tensor-test
+This will create a new version of the docker image, to view it use:
+
 
 ## Strategy
 #### 2D Board

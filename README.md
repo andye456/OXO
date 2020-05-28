@@ -1,9 +1,6 @@
 # MLOXO
 _n_-dimentional Noughts and Crosses
 ## References
-Higher-Dimensional Tic-Tac-Toe | Infinite Series
-
-https://www.youtube.com/watch?v=FwJZa-helig
 
 In this repo there is a Q-Learning jupyter notebook which can be used from a 
 notebook running anywhere. 
@@ -29,6 +26,24 @@ Create the new changed docker image:
 
     docker commit tensor-test
 This will create a new version of the docker image, to view it use:
+
+    docker images
+Add a tag to the image:
+
+    docker tag a68119c8fd51 basic-demo
+Stop the current docker image and deploy the new one.
+
+    docker ps
+
+    docker stop tensor-test
+    docker rm tensor-test
+Create a new Docker container based on the image just created run it interactively
+
+    docker run -i --name demo1 -d -p 80:8888 basic-demo
+Then you can stop and start it at will:
+
+    docker stop demo1
+    docker start -i demo1
 
 
 ## Strategy

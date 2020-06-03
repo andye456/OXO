@@ -8,5 +8,5 @@ class Human:
         available = zip(a[0], a[1])
         print("Player turn, choose from the following locations:")
         print(available)
-        select = raw_input(">")
+        select = input(">")
         return eval(select)
